@@ -9,7 +9,12 @@ function App() {
       <button
         onClick={() => {
           axios
-            .get("http://localhost:777", { withCredentials: true })
+            .get("http://localhost:777/api/v1/auth?zktId=707", {
+              withCredentials: true,
+              // headers: {
+              //   "Access-Control-Allow-Origin": "*",
+              // },
+            })
             .then((json) => {
               console.log(json);
             })
@@ -22,9 +27,12 @@ function App() {
       </button>
       <button
         onClick={() => {
-          const d = { a: 1, b: [1, 2, 3, 4, 5, 6, 7], c: { a: "a" } };
+          const d = { username: "test", password: "Test707$" };
           axios
-            .post("http://localhost:777/post", d)
+            .post("http://localhost:777/api/v1/auth/login", d, {
+              withCredentials: true,
+              // headers: { "Access-Control-Allow-Origin": "*" },
+            })
             .then(({ data }) => {
               console.log(data);
             })
